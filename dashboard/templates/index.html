@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraGraph AI | Autonomous Researcher</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .node-active { border-color: #3b82f6; background-color: #eff6ff; }
+        .spinner { border: 3px solid #f3f3f3; border-top: 3px solid #3b82f6; border-radius: 50%; width: 20px; height: 20px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <nav class="bg-white border-b border-gray-200 px-8 py-4">
+        <h1 class="text-2xl font-bold text-blue-600">AuraGraph <span class="text-gray-400 font-light">AI</span></h1>
+    </nav>
+
+    <main class="max-w-7xl mx-auto p-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-1 space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Research Task</label>
+                <textarea id="taskInput" rows="3" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="e.g. Impact of Quantum Computing on Cybersecurity 2026"></textarea>
+                <button id="startBtn" class="w-full mt-4 bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition">Start Autonomous Research</button>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <h3 class="font-bold text-gray-800 mb-4">Agent Thinking Process</h3>
+                <div id="statusLogs" class="space-y-4">
+                    <div id="status-planner" class="p-3 border rounded-lg flex items-center justify-between text-gray-400">
+                        <span>1. Planning Strategy</span>
+                        <div class="icon"></div>
+                    </div>
+                    <div id="status-researcher" class="p-3 border rounded-lg flex items-center justify-between text-gray-400">
+                        <span>2. Web Research</span>
+                        <div class="icon"></div>
+                    </div>
+                    <div id="status-writer" class="p-3 border rounded-lg flex items-center justify-between text-gray-400">
+                        <span>3. Drafting Report</span>
+                        <div class="icon"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:col-span-2">
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 min-h-[600px]">
+                <div class="flex items-center justify-between mb-6 border-b pb-4">
+                    <h2 class="text-xl font-bold text-gray-800">Final Research Report</h2>
+                    <button id="copyBtn" class="text-blue-600 text-sm hover:underline">Copy Markdown</button>
+                </div>
+                <div id="reportOutput" class="prose max-w-none text-gray-600 italic">
+                    Report will appear here after agents complete their tasks...
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/static/js/socket_logic.js"></script>
+</body>
+</html>
